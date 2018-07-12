@@ -182,6 +182,13 @@ public class BasicFiltersViewImpl implements BasicFiltersView,
             if (keyCode <= 0) { //getKeyCode() returns 0 for numbers on Firefox 53
                 keyCode = e.getWhich();
             }
+            
+            //special check for Char "e"
+            if(keyCode==101 && e.getKey().equals("e")){
+                e.preventDefault();
+                return;
+            }
+
             if (!((keyCode >= KeyCodes.KEY_NUM_ZERO && keyCode <= KeyCodes.KEY_NUM_NINE) ||
                     (keyCode >= KeyCodes.KEY_ZERO && keyCode <= KeyCodes.KEY_NINE) ||
                     (keyCode == KeyCodes.KEY_BACKSPACE || keyCode == KeyCodes.KEY_LEFT || keyCode == KeyCodes.KEY_RIGHT))) {
