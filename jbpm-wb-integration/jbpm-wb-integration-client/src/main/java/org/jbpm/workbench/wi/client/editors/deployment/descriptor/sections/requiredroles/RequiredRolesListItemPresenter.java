@@ -42,7 +42,7 @@ public class RequiredRolesListItemPresenter extends ListItemPresenter<String, De
 
         view.init(this);
         view.setRole(role);
-
+        
         return this;
     }
 
@@ -61,5 +61,10 @@ public class RequiredRolesListItemPresenter extends ListItemPresenter<String, De
                                   IsElement {
 
         void setRole(final String role);
+    }
+    
+    public void openRequiredRoleModal(final String role) {
+        super.remove();
+        parentPresenter.openModfiyRequireRoleModal(role);
     }
 }
