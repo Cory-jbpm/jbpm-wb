@@ -102,6 +102,10 @@ public class ObjectItemPresenter extends ListItemPresenter<ItemObjectModel, Sect
         fireChangeEvent();
     }
 
+    public void openEditModal(final String value) {
+        super.remove();
+        parentPresenter.openEditModal(value);
+    }
     public interface View extends ListItemView<ObjectItemPresenter> {
 
         Element getResolversContainer();

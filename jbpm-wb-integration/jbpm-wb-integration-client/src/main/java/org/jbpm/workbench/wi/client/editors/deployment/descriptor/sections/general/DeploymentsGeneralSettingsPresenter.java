@@ -134,4 +134,16 @@ public class DeploymentsGeneralSettingsPresenter extends Section<DeploymentDescr
                 model.getPersistenceMode().hashCode() +
                 model.getRuntimeStrategy().hashCode();
     }
+
+    @Override
+    public void openEditModal(String... vaules) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void openAddModal() {
+        // TODO Auto-generated method stub
+        
+    }
 }

@@ -110,4 +110,16 @@ public class DeploymentsEventListenersPresenter extends Section<DeploymentDescri
             super(itemPresenters);
         }
     }
+
+    @Override
+    public void openEditModal(String... values) {
+        addEventListenerModal.getView().setValue(values[0]);
+        addEventListenerModal.showEditModel(this::addEventListener);
+    }
+
+    @Override
+    public void openAddModal() {
+        // TODO Auto-generated method stub
+        
+    }
 }

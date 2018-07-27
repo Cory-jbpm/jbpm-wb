@@ -21,23 +21,26 @@ import java.util.ArrayList;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import elemental2.dom.Element;
 import org.jbpm.workbench.wi.client.editors.deployment.descriptor.model.Resolver;
 import org.jbpm.workbench.wi.dd.model.ItemObjectModel;
+import org.kie.workbench.common.screens.library.client.settings.util.modal.single.AddSingleValueModal;
 import org.kie.workbench.common.screens.library.client.settings.util.sections.Section;
 import org.kie.workbench.common.screens.library.client.settings.util.select.KieEnumSelectElement;
 import org.kie.workbench.common.widgets.client.widget.ListItemPresenter;
 import org.kie.workbench.common.widgets.client.widget.ListItemView;
+import org.kie.workbench.common.widgets.client.widget.ListPresenter;
+
+import elemental2.dom.Element;
 
 @Dependent
 public class NamedObjectItemPresenter extends ListItemPresenter<ItemObjectModel, Section<?>, NamedObjectItemPresenter.View> implements ObjectPresenter {
 
     private final ParametersModal parametersModal;
     private final KieEnumSelectElement<Resolver> resolversSelect;
-
+    
     ItemObjectModel model;
     Section<?> parentPresenter;
-
+    
     @Inject
     public NamedObjectItemPresenter(final View view,
                                     final ParametersModal parametersModal,
@@ -52,7 +55,6 @@ public class NamedObjectItemPresenter extends ListItemPresenter<ItemObjectModel,
                                           final Section<?> parentPresenter) {
         this.model = model;
         this.parentPresenter = parentPresenter;
-
         if (model.getParameters() == null) {
             model.setParameters(new ArrayList<>());
         }
@@ -102,6 +104,10 @@ public class NamedObjectItemPresenter extends ListItemPresenter<ItemObjectModel,
         fireChangeEvent();
     }
 
+    public void openEditModal(final String name,final String value) {
+        super.remove();
+        parentPresenter.openEditModal(name,value);
+    }
     public interface View extends ListItemView<NamedObjectItemPresenter> {
 
         Element getResolversContainer();
