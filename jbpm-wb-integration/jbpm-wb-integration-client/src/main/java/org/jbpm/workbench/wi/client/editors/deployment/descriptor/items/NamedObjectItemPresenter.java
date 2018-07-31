@@ -23,17 +23,15 @@ import javax.inject.Inject;
 
 import org.jbpm.workbench.wi.client.editors.deployment.descriptor.model.Resolver;
 import org.jbpm.workbench.wi.dd.model.ItemObjectModel;
-import org.kie.workbench.common.screens.library.client.settings.util.modal.single.AddSingleValueModal;
 import org.kie.workbench.common.screens.library.client.settings.util.sections.Section;
+import org.kie.workbench.common.screens.library.client.settings.util.sections.SectionListItemPresenter;
 import org.kie.workbench.common.screens.library.client.settings.util.select.KieEnumSelectElement;
-import org.kie.workbench.common.widgets.client.widget.ListItemPresenter;
 import org.kie.workbench.common.widgets.client.widget.ListItemView;
-import org.kie.workbench.common.widgets.client.widget.ListPresenter;
 
 import elemental2.dom.Element;
 
 @Dependent
-public class NamedObjectItemPresenter extends ListItemPresenter<ItemObjectModel, Section<?>, NamedObjectItemPresenter.View> implements ObjectPresenter {
+public class NamedObjectItemPresenter extends SectionListItemPresenter<ItemObjectModel, Section<?>, NamedObjectItemPresenter.View> implements ObjectPresenter {
 
     private final ParametersModal parametersModal;
     private final KieEnumSelectElement<Resolver> resolversSelect;
@@ -104,9 +102,14 @@ public class NamedObjectItemPresenter extends ListItemPresenter<ItemObjectModel,
         fireChangeEvent();
     }
 
+    @SuppressWarnings("unchecked")
     public void openEditModal(final String name,final String value) {
         super.remove();
-        parentPresenter.openEditModal(name,value);
+        
+        this.getSectionListPresenter().showDoubleValueEditModal(name, value, (n,v) ->{
+            this.getSectionListPresenter().addValues(name,value);
+            fireChangeEvent();
+        });
     }
     public interface View extends ListItemView<NamedObjectItemPresenter> {
 

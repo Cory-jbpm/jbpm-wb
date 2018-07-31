@@ -25,12 +25,12 @@ import elemental2.dom.Element;
 import org.jbpm.workbench.wi.client.editors.deployment.descriptor.model.Resolver;
 import org.jbpm.workbench.wi.dd.model.ItemObjectModel;
 import org.kie.workbench.common.screens.library.client.settings.util.sections.Section;
+import org.kie.workbench.common.screens.library.client.settings.util.sections.SectionListItemPresenter;
 import org.kie.workbench.common.screens.library.client.settings.util.select.KieEnumSelectElement;
-import org.kie.workbench.common.widgets.client.widget.ListItemPresenter;
 import org.kie.workbench.common.widgets.client.widget.ListItemView;
 
 @Dependent
-public class ObjectItemPresenter extends ListItemPresenter<ItemObjectModel, Section<?>, ObjectItemPresenter.View> implements ObjectPresenter {
+public class ObjectItemPresenter extends SectionListItemPresenter<ItemObjectModel, Section<?>, ObjectItemPresenter.View> implements ObjectPresenter {
 
     private final ParametersModal parametersModal;
     private final KieEnumSelectElement<Resolver> resolversSelect;
@@ -102,9 +102,14 @@ public class ObjectItemPresenter extends ListItemPresenter<ItemObjectModel, Sect
         fireChangeEvent();
     }
 
+    @SuppressWarnings("unchecked")
     public void openEditModal(final String value) {
         super.remove();
-        parentPresenter.openEditModal(value);
+        
+        this.getSectionListPresenter().showSingleValueEditModal(value, v ->{
+            this.getSectionListPresenter().addValues(value);
+            fireChangeEvent();
+        });
     }
     public interface View extends ListItemView<ObjectItemPresenter> {
 
