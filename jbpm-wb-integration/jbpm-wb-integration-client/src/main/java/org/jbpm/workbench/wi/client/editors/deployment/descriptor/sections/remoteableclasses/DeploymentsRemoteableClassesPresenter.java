@@ -105,15 +105,4 @@ public class DeploymentsRemoteableClassesPresenter extends Section<DeploymentDes
         }
     }
 
-    @Override
-    public void openEditModal(String... vaules) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void openAddModal() {
-        // TODO Auto-generated method stub
-        
-    }
 }

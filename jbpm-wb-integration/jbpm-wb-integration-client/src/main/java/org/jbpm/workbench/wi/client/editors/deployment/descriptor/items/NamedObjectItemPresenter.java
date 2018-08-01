@@ -102,12 +102,15 @@ public class NamedObjectItemPresenter extends SectionListItemPresenter<ItemObjec
         fireChangeEvent();
     }
 
-    @SuppressWarnings("unchecked")
     public void openEditModal(final String name,final String value) {
+        ItemObjectModel itemObjectModel = new ItemObjectModel();
+        itemObjectModel.setParameters(model.getParameters());
+        itemObjectModel.setResolver(model.getResolver());
         super.remove();
-        
-        this.getSectionListPresenter().showDoubleValueEditModal(name, value, (n,v) ->{
-            this.getSectionListPresenter().addValues(name,value);
+        this.getSectionListPresenter().showDoubleValueEditModal(name,value, (n,v) ->{
+            itemObjectModel.setName(n);
+            itemObjectModel.setValue(v);
+            this.getSectionListPresenter().add(itemObjectModel);
             fireChangeEvent();
         });
     }

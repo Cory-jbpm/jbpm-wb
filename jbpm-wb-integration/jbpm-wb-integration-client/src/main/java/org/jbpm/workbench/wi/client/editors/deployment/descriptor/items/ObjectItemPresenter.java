@@ -102,15 +102,19 @@ public class ObjectItemPresenter extends SectionListItemPresenter<ItemObjectMode
         fireChangeEvent();
     }
 
-    @SuppressWarnings("unchecked")
     public void openEditModal(final String value) {
+        ItemObjectModel itemObjectModel = new ItemObjectModel();
+        itemObjectModel.setParameters(model.getParameters());
+        itemObjectModel.setResolver(model.getResolver());
         super.remove();
-        
-        this.getSectionListPresenter().showSingleValueEditModal(value, v ->{
-            this.getSectionListPresenter().addValues(value);
+        getSectionListPresenter().showSingleValueEditModal( value , v ->{
+            itemObjectModel.setValue(v);
+            this.getSectionListPresenter().add(itemObjectModel);
             fireChangeEvent();
+            
         });
     }
+    
     public interface View extends ListItemView<ObjectItemPresenter> {
 
         Element getResolversContainer();

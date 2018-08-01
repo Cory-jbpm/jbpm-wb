@@ -111,15 +111,4 @@ public class DeploymentsMarshallingStrategiesPresenter extends Section<Deploymen
         }
     }
 
-    @Override
-    public void openEditModal(String... vaules) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void openAddModal() {
-        // TODO Auto-generated method stub
-        
-    }
 }

@@ -112,15 +112,4 @@ public class DeploymentsConfigurationPresenter extends Section<DeploymentDescrip
         }
     }
 
-    @Override
-    public void openEditModal(String... vaules) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void openAddModal() {
-        // TODO Auto-generated method stub
-        
-    }
 }
